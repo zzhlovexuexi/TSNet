@@ -152,45 +152,12 @@ if __name__ == '__main__':
     scaler = GradScaler()
     scaler2 = GradScaler()
 
-    if checkpoint is not None:
-        optimizer.load_state_dict(checkpoint['optimizer'])
-        scheduler.load_state_dict(checkpoint['lr_scheduler'])
-        scaler.load_state_dict(checkpoint['scaler'])
-        best_psnr = checkpoint['best_psnr']
-        start_epoch = checkpoint['epoch'] + 1
-    else:
-        best_psnr1 = 0
-        best_psnr2 = 0
-        start_epoch = 0
-
-    best_psnr1 = 0
-    best_psnr2 = 0
-
-    dataset_dir = os.path.join(args.data_dir, args.dataset)
-    train_dataset = PairLoader(dataset_dir, 'train', 'train',
-                               setting['patch_size'],
-                               setting['edge_decay'],
-                               setting['only_h_flip'])
-    train_loader = DataLoader(train_dataset,
-                              batch_size=setting['batch_size'],
-                              shuffle=True,
-                              num_workers=args.num_workers,
-                              pin_memory=True,
-                              drop_last=True)
-    val_dataset = PairLoader(dataset_dir, 'test', setting['valid_mode'],
-                             setting['patch_size'])
-    val_loader = DataLoader(val_dataset,
-                            batch_size=setting['batch_size'],
-                            num_workers=args.num_workers,
-                            pin_memory=True)
-
-    save_dir = os.path.join(args.save_dir, args.exp)
-    os.makedirs(save_dir, exist_ok=True)
-
-    # if not os.path.exists(os.path.join(save_dir, args.model+'.pth')):
-    print('==> Start training, current model name: ' + args.model + ' + TSNet_t2')
-    # print(network)
-
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    #Hidden some configuration information.
+    
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
 
     train_ls, test_ls, idx = [], [], []
     train_ls2, test_ls2, idx2 = [], [], []
