@@ -135,23 +135,6 @@ if __name__ == '__main__':
     criterion2.append(nn.SmoothL1Loss(reduction='mean'))
 
 
-    if setting['optimizer'] == 'adam':
-        optimizer = torch.optim.Adam(network.parameters(), lr=setting['lr'])
-        optimizer2 = torch.optim.Adam(network2.parameters(), lr=setting['lr'])
-    elif setting['optimizer'] == 'adamw':
-        optimizer = torch.optim.AdamW(network.parameters(), lr=setting['lr'])
-        optimizer2 = torch.optim.AdamW(network2.parameters(), lr=setting['lr'])
-    else:
-        raise Exception("ERROR: unsupported optimizer")
-
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=setting['epochs'],
-                                                           eta_min=setting['lr'] * 1e-2)
-    scheduler2 = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer2, T_max=setting['epochs'],
-                                                           eta_min=setting['lr'] * 1e-2)
-
-    scaler = GradScaler()
-    scaler2 = GradScaler()
-
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     #Hidden some configuration information.
